@@ -1,0 +1,110 @@
+.galada-regular {
+  font-family: "Galada", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.space-mono-regular {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hero {
+  background-color: #f2e0f3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cozy-pc-hero {
+  height: 250px;
+}
+
+.container-hero {
+  width: 350px;
+  margin: 0 auto;
+}
+
+.row.ccf {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 767px) {
+  .cozy-pc-hero {
+    height: 180px;
+  }
+  .row.ccf {
+    font-size: 1.2rem;
+  }
+}
+
+/* .c-about-me {
+  height: 100vh;
+} */
+
+.pp {
+  height: 350px;
+  border-radius: 50%;
+  margin-left: 70px;
+}
+
+.about-me {
+  font-size: large;
+}
+
+.project-image {
+  height: 450px;
+  background-color: #f2e0f3;
+  border: 2px solid #e2c9e5;
+  border-radius: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+  padding: 20px;
+}
+
+.project-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.h-project {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 450px;
+  padding: 40px;
+}
+
+@media (max-width: 1023px) {
+  .h-project {
+    height: auto;
+  }
+}
+
+.contact-btn {
+  background-color: #e2c9e5;
+  border: 2px solid #e2c9e5;
+  border-radius: 25px;
+  height: 40px;
+  width: 150px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+  color: black;
+}
+
+.footer {
+  background-color: #e2c9e5;
+}
