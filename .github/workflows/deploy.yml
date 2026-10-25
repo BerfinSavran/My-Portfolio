@@ -1,0 +1,36 @@
+name: Deploy to server
+
+# main dalına her push'ta (veya elle) sunucuya deploy eder.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: SSH ile sunucuya deploy
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+          # Sunucunun host key'i sabitlendi (MITM koruması)
+          printf '%s\n' '[berfinsavran.com]:25416 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWNafC74ELZKkfSZAHrdYdrJKQODGTWdMuwVcy6qqJf' > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+          ssh -T -i ~/.ssh/id_ed25519 -p 25416 \
+            -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=15 \
+            deploy@berfinsavran.com
